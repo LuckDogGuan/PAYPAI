@@ -1,0 +1,22 @@
+{
+  "name": "paypai-contracts",
+  "version": "1.0.0",
+  "description": "Smart contracts for PayPai vault system",
+  "type": "module",
+  "scripts": {
+    "compile": "hardhat compile",
+    "deploy": "hardhat run scripts/deploy.js --network kiteTestnet",
+    "deploy:token": "hardhat run scripts/deploy-token.js --network kiteTestnet",
+    "verify:vault": "hardhat run scripts/verify-vault.js --network kiteTestnet",
+    "verify:token": "hardhat run scripts/verify-token.js --network kiteTestnet",
+    "verify:all": "npm run verify:vault && npm run verify:token"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "@nomicfoundation/hardhat-verify": "hh2",
+    "@openzeppelin/contracts": "^5.0.0",
+    "@openzeppelin/contracts-upgradeable": "^5.0.0",
+    "hardhat": "^2.19.0",
+    "dotenv": "^16.3.1"
+  }
+}

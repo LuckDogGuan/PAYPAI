@@ -1,0 +1,128 @@
+'use client';
+
+import { useState } from 'react';
+import { useAccount } from 'wagmi';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { getAddressFromPrivateKey } from '@/lib/wallet';
+
+interface WalletConnectProps {
+  onPrivateKeyConnect: (address: string, privateKey: string) => void;
+}
+
+export default function WalletConnect({ onPrivateKeyConnect }: WalletConnectProps) {
+  const [privateKey, setPrivateKey] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [showPrivateKey, setShowPrivateKey] = useState(false);
+
+  const { address, isConnected } = useAccount();
+
+  const handlePrivateKeyConnect = async () => {
+    setError('');
+    setLoading(true);
+
+    try {
+      const key = privateKey.startsWith('0x') ? privateKey : `0x${privateKey}`;
+      const address = getAddressFromPrivateKey(key);
+
+      console.log('Private key connect:', address);
+      onPrivateKeyConnect(address, key);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to connect wallet');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleUseDevKey = () => {
+    const devKey = process.env.NEXT_PUBLIC_PRIVATE_KEY || '';
+    if (devKey) {
+      setPrivateKey(devKey);
+    } else {
+      setError('No dev key found in environment');
+    }
+  };
+
+  return (
+    <div className="bg-zinc-900 p-6 rounded-lg border border-zinc-800">
+      <h2 className="text-xl font-semibold mb-4">Connect Wallet</h2>
+
+      <div className="space-y-4">
+        <div className="flex justify-center">
+          <ConnectButton showBalance={false} accountStatus="address" chainStatus="icon" />
+        </div>
+
+        {/* Divider */}
+        <div className="relative">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-zinc-700"></div>
+          </div>
+          <div className="relative flex justify-center text-sm">
+            <span className="px-2 bg-zinc-900 text-gray-500">or</span>
+          </div>
+        </div>
+
+        {/* Private Key Input (Toggle) */}
+        <button
+          onClick={() => setShowPrivateKey(!showPrivateKey)}
+          className="text-sm text-gray-400 hover:text-white transition-colors flex items-center gap-1"
+        >
+          <span>{showPrivateKey ? '▼' : '▶'}</span>
+          <span>Connect with Private Key (Development)</span>
+        </button>
+
+        {showPrivateKey && (
+          <div className="space-y-3 pt-2">
+            <div>
+              <label className="block text-sm text-gray-400 mb-2">
+                Private Key (Development Only)
+              </label>
+              <input
+                type="password"
+                value={privateKey}
+                onChange={(e) => setPrivateKey(e.target.value)}
+                placeholder="Enter your private key"
+                className="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500"
+                disabled={loading}
+              />
+            </div>
+
+            <div className="flex gap-2">
+              <button
+                onClick={handlePrivateKeyConnect}
+                disabled={loading || !privateKey}
+                className="flex-1 px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-700 disabled:cursor-not-allowed text-white rounded-lg transition-colors"
+              >
+                {loading ? 'Connecting...' : 'Connect'}
+              </button>
+
+              <button
+                onClick={handleUseDevKey}
+                type="button"
+                className="px-4 py-2 bg-zinc-700 hover:bg-zinc-600 text-white rounded-lg transition-colors text-sm"
+              >
+                Use Dev Key
+              </button>
+            </div>
+
+            <p className="text-xs text-gray-500">
+              ⚠️ Never share your private key. This is for development only.
+            </p>
+          </div>
+        )}
+
+        {isConnected && address && (
+          <div className="text-xs text-gray-500">
+            Connected wallet: {address.slice(0, 8)}...{address.slice(-6)}
+          </div>
+        )}
+
+        {error && (
+          <div className="text-red-400 text-sm bg-red-900/20 p-3 rounded border border-red-800">
+            {error}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}

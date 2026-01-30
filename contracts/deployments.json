@@ -1,0 +1,8 @@
+{
+  "network": "kite-testnet",
+  "implementation": "0xfc4f62951837D372C843CA7Dc490Ba613Ffc6603",
+  "factory": "0x8cBCfCDc9B7E8dDa4f36E70b2E144c3BeedF07Ae",
+  "settlementToken": "0x0fF5393387ad2f9f691FD6Fd28e07E3969e27e63",
+  "deploymentDate": "2026-01-30T10:56:20.757Z",
+  "deployer": "0xCb676856D434E452a4994354aa78b2Cc1c10EEF6"
+}
