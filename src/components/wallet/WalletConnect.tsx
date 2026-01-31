@@ -46,8 +46,8 @@ export default function WalletConnect({ onPrivateKeyConnect }: WalletConnectProp
   return (
     <div className="w-full">
       <div className="text-center mb-8">
-        <h2 className="text-2xl font-bold text-white mb-2">Connect Wallet</h2>
-        <p className="text-slate-400 text-sm">Choose how you want to connect to PayPai</p>
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Connect Wallet</h2>
+        <p className="text-slate-500 dark:text-slate-400 text-sm">Choose how you want to connect to PayPai</p>
       </div>
 
       <div className="space-y-6">
@@ -60,17 +60,17 @@ export default function WalletConnect({ onPrivateKeyConnect }: WalletConnectProp
         {/* Divider */}
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-white/10"></div>
+            <div className="w-full border-t border-slate-200 dark:border-white/10"></div>
           </div>
           <div className="relative flex justify-center text-xs uppercase tracking-widest">
-            <span className="px-4 bg-[#0a0a16] text-slate-500 font-medium">or</span>
+            <span className="px-4 bg-white/50 dark:bg-[#0a0a16] text-slate-400 dark:text-slate-500 font-medium backdrop-blur-sm rounded-full">or</span>
           </div>
         </div>
 
         {/* Private Key Input (Toggle) */}
         <button
           onClick={() => setShowPrivateKey(!showPrivateKey)}
-          className="w-full flex items-center justify-center gap-2 text-sm text-slate-400 hover:text-white transition-colors group py-2"
+          className="w-full flex items-center justify-center gap-2 text-sm text-slate-500 dark:text-slate-400 hover:text-pp-blue dark:hover:text-white transition-colors group py-2"
         >
           <span className={`transition-transform duration-300 ${showPrivateKey ? 'rotate-90' : ''}`}>▶</span>
           <span className="group-hover:underline decoration-pp-cyan/50 underline-offset-4">Connect with Private Key (Dev)</span>
@@ -79,7 +79,7 @@ export default function WalletConnect({ onPrivateKeyConnect }: WalletConnectProp
         {showPrivateKey && (
           <div className="space-y-4 animate-slide-in">
             <div className="relative">
-              <label className="block text-xs uppercase tracking-wider text-pp-cyan/80 mb-2 font-bold ml-1">
+              <label className="block text-xs uppercase tracking-wider text-slate-500 dark:text-pp-cyan/80 mb-2 font-bold ml-1">
                 Private Key
               </label>
               <input
@@ -87,7 +87,7 @@ export default function WalletConnect({ onPrivateKeyConnect }: WalletConnectProp
                 value={privateKey}
                 onChange={(e) => setPrivateKey(e.target.value)}
                 placeholder="0x..."
-                className="w-full px-4 py-3 bg-black/40 border border-white/10 rounded-xl text-white placeholder-white/20 focus:outline-none focus:border-pp-cyan/50 focus:ring-1 focus:ring-pp-cyan/20 transition-all font-mono text-sm"
+                className="w-full px-4 py-3 bg-white/80 dark:bg-black/40 border border-slate-200 dark:border-white/10 rounded-xl text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-white/20 focus:outline-none focus:border-pp-cyan/50 focus:ring-1 focus:ring-pp-cyan/20 transition-all font-mono text-sm"
                 disabled={loading}
               />
             </div>
@@ -104,7 +104,7 @@ export default function WalletConnect({ onPrivateKeyConnect }: WalletConnectProp
               <button
                 onClick={handleUseDevKey}
                 type="button"
-                className="px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-white/70 hover:bg-white/10 hover:text-white transition-colors text-sm font-medium whitespace-nowrap"
+                className="px-4 py-2 rounded-xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-white/70 hover:bg-slate-200 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white transition-colors text-sm font-medium whitespace-nowrap"
               >
                 Use Dev Key
               </button>

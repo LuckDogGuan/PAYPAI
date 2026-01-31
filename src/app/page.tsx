@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo, useRef, type CSSProperties } from 'react'
 import dynamic from 'next/dynamic';
 import { useAccount } from 'wagmi';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import ThemeToggle from '@/components/ThemeToggle';
 
 const WalletConnect = dynamic(() => import('@/components/wallet/WalletConnect'), { ssr: false });
 const WalletInfo = dynamic(() => import('@/components/wallet/WalletInfo'), { ssr: false });
@@ -99,6 +100,9 @@ export default function Home() {
   if (!signerAddress) {
     return (
       <main className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[url('/grid-noise.svg')] bg-fixed bg-cover" style={{ background: 'var(--pp-bg-gradient)' }}>
+        <div className="absolute top-6 right-6 z-50">
+          <ThemeToggle />
+        </div>
         {/* Ambient Background Effects */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-pp-purple/20 rounded-full blur-[120px] animate-float opacity-60"></div>
@@ -137,7 +141,10 @@ export default function Home() {
   }
 
   return (
-    <main className="relative min-h-screen text-white overflow-x-hidden perspective-1000">
+    <main className="relative min-h-screen text-white overflow-x-hidden perspective-1000 transition-colors duration-300" style={{ color: 'var(--pp-text-main)' }}>
+      <div className="absolute top-6 right-6 z-50">
+        <ThemeToggle />
+      </div>
       {/* Background Ambience */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full bg-pp-purple/30 blur-[120px] mix-blend-screen animate-float" />
