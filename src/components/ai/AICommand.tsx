@@ -583,14 +583,14 @@ export default function AICommand({
               )}
               <div
                 className={`max-w-[85%] rounded-3xl px-6 py-4 text-sm leading-relaxed backdrop-blur-md shadow-lg transition-transform hover:scale-[1.01] ${message.role === 'assistant'
-                    ? message.kind === 'confirm'
-                      ? 'border border-pp-purple/40 bg-pp-purple/10 text-white'
-                      : message.kind === 'status'
-                        ? message.status === 'success'
-                          ? 'border border-emerald-500/40 bg-emerald-900/40 text-emerald-100'
-                          : 'border border-rose-500/40 bg-rose-900/40 text-rose-100'
-                        : 'border border-white/10 bg-white/10 text-white/90'
-                    : 'border border-pp-cyan/30 bg-gradient-to-br from-pp-cyan/20 to-pp-blue/20 text-white rounded-tr-sm'
+                  ? message.kind === 'confirm'
+                    ? 'border border-pp-purple/40 bg-pp-purple/10 text-white'
+                    : message.kind === 'status'
+                      ? message.status === 'success'
+                        ? 'border border-emerald-500/40 bg-emerald-900/40 text-emerald-100'
+                        : 'border border-rose-500/40 bg-rose-900/40 text-rose-100'
+                      : 'border border-white/10 bg-white/10 text-white/90'
+                  : 'border border-pp-cyan/30 bg-gradient-to-br from-pp-cyan/20 to-pp-blue/20 text-white rounded-tr-sm'
                   }`}
               >
                 {message.kind === 'confirm' ? (
@@ -753,13 +753,13 @@ export default function AICommand({
                 }
               }}
               placeholder="Ask to send ETH or tokens..."
-              className="flex-1 w-full px-5 py-4 bg-black/20 border border-white/10 rounded-2xl text-white placeholder-white/30 focus:outline-none focus:border-pp-cyan/50 focus:ring-1 focus:ring-pp-cyan/20 font-medium transition-all"
+              className="flex-1 w-full px-5 py-4 bg-slate-100 dark:bg-black/20 border border-slate-300 dark:border-white/10 rounded-2xl text-slate-900 dark:text-white placeholder-slate-500 dark:placeholder-white/30 focus:outline-none focus:border-blue-500 dark:focus:border-pp-cyan/50 focus:ring-1 focus:ring-blue-500/20 dark:focus:ring-pp-cyan/20 font-medium transition-all"
               disabled={loading}
             />
             <button
               onClick={handleSend}
               disabled={loading || !input.trim()}
-              className="absolute right-2 p-2 rounded-xl bg-pp-primary-gradient text-white shadow-lg disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 transition-transform"
+              className="absolute right-2 p-2 rounded-xl bg-blue-600 hover:bg-blue-700 dark:bg-pp-primary-gradient text-white shadow-lg disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 transition-transform"
               aria-label="Send"
             >
               {loading ? (

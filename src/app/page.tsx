@@ -156,16 +156,16 @@ export default function Home() {
         <header ref={headerRef} className="mb-12 card p-8 backdrop-blur-3xl border-white/30 hover:transform-none">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between relative z-10">
             <div>
-              <h1 className="text-5xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-pp-cyan drop-shadow-sm">
+              <h1 className="text-5xl font-bold tracking-tight text-slate-900 dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-white dark:via-white dark:to-pp-cyan drop-shadow-sm">
                 PayPai
               </h1>
-              <div className="mt-2 text-lg text-pp-cyan/80 font-medium">
+              <div className="mt-2 text-lg text-slate-600 dark:text-pp-cyan/80 font-medium">
                 Secure AI wallet for Kite Chain
               </div>
             </div>
             <div className="flex flex-wrap items-center gap-3">
-              <span className="pill bg-teal-500/20 text-teal-200 border-teal-500/30">Wallet Connected</span>
-              <span className="pill bg-indigo-500/20 text-indigo-200 border-indigo-500/30">{networkLabel}</span>
+              <span className="pill bg-teal-100 text-teal-800 border-teal-200 dark:bg-teal-500/20 dark:text-teal-200 dark:border-teal-500/30">Wallet Connected</span>
+              <span className="pill bg-indigo-100 text-indigo-800 border-indigo-200 dark:bg-indigo-500/20 dark:text-indigo-200 dark:border-indigo-500/30">{networkLabel}</span>
               <div className="glass rounded-xl overflow-hidden shadow-lg">
                 <ConnectButton showBalance={false} accountStatus="address" chainStatus="icon" />
               </div>
@@ -195,15 +195,15 @@ export default function Home() {
                   className="flex items-center gap-3 text-left w-full group"
                   aria-expanded={showSetupSteps}
                 >
-                  <span className="text-pp-cyan/70 text-lg transition-transform group-hover:scale-110">
+                  <span className="text-blue-600 dark:text-pp-cyan/70 text-lg transition-transform group-hover:scale-110">
                     {showSetupSteps ? '▾' : '▸'}
                   </span>
-                  <h2 className="text-xl font-bold text-white group-hover:text-pp-cyan transition-colors">Setup Steps</h2>
+                  <h2 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-pp-cyan transition-colors">Setup Steps</h2>
                 </button>
               </div>
               {showSetupSteps && (
                 <div className="relative mt-4 pl-4 space-y-3">
-                  <div className="absolute left-[21px] top-2 bottom-2 w-0.5 bg-gradient-to-b from-pp-cyan/50 to-transparent"></div>
+                  <div className="absolute left-[21px] top-2 bottom-2 w-0.5 bg-gradient-to-b from-blue-400/50 dark:from-pp-cyan/50 to-transparent"></div>
 
                   {[
                     { label: 'Deploy AA wallet', status: isWalletDeployed ? 'Done' : 'Pending', done: isWalletDeployed },
@@ -212,9 +212,9 @@ export default function Home() {
                     { label: 'Execute via Agent', status: vaultExecutorReady ? 'Ready' : 'Locked', done: vaultExecutorReady }
                   ].map((step, idx) => (
                     <div key={idx} className="relative flex items-center justify-between gap-4 py-2 pl-6 group">
-                      <div className={`absolute left-0 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full border-2 ${step.done ? 'bg-pp-cyan border-pp-cyan shadow-[0_0_10px_rgba(0,229,255,0.5)]' : 'bg-slate-800 border-slate-600'}`}></div>
-                      <span className={`text-sm font-medium ${step.done ? 'text-white' : 'text-slate-400'}`}>{idx + 1}. {step.label}</span>
-                      <span className={`rounded-full px-3 py-1 text-[10px] font-bold tracking-wider uppercase ${step.done ? 'bg-pp-cyan/20 text-pp-cyan border border-pp-cyan/30' : 'bg-white/5 text-slate-400 border border-white/10'}`}>
+                      <div className={`absolute left-0 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full border-2 ${step.done ? 'bg-blue-600 border-blue-600 dark:bg-pp-cyan dark:border-pp-cyan shadow-sm' : 'bg-slate-300 border-slate-400 dark:bg-slate-800 dark:border-slate-600'}`}></div>
+                      <span className={`text-sm font-medium ${step.done ? 'text-slate-900 dark:text-white' : 'text-slate-500 dark:text-slate-400'}`}>{idx + 1}. {step.label}</span>
+                      <span className={`rounded-full px-3 py-1 text-[10px] font-bold tracking-wider uppercase ${step.done ? 'bg-blue-100 text-blue-800 border border-blue-200 dark:bg-pp-cyan/20 dark:text-pp-cyan dark:border-pp-cyan/30' : 'bg-slate-100 text-slate-600 border border-slate-200 dark:bg-white/5 dark:text-slate-400 dark:border-white/10'}`}>
                         {step.status}
                       </span>
                     </div>
@@ -246,8 +246,8 @@ export default function Home() {
             )}
 
             {!isWalletDeployed && (
-              <div className="card border-l-4 border-amber-400 bg-amber-500/10 p-5">
-                <p className="text-amber-200 font-medium flex items-center gap-2">
+              <div className="card border-l-4 border-amber-400 bg-amber-50 dark:bg-amber-500/10 p-5">
+                <p className="text-amber-800 dark:text-amber-200 font-medium flex items-center gap-2">
                   <span className="text-xl">⚠️</span>
                   Deploy your AA wallet to unlock Vault setup and agent execution.
                 </p>
@@ -276,11 +276,11 @@ export default function Home() {
               </>
             ) : (
               <div className="card p-12 text-center flex flex-col items-center justify-center min-h-[400px]">
-                <div className="w-24 h-24 rounded-full bg-white/5 flex items-center justify-center mb-6 animate-pulse">
+                <div className="w-24 h-24 rounded-full bg-slate-100 dark:bg-white/5 flex items-center justify-center mb-6 animate-pulse">
                   <span className="text-4xl">🤖</span>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-2">Agent Awaiting Authorization</h3>
-                <p className="text-slate-400 max-w-sm">Deploy your smart wallet to activate the AI agent capabilities on the Kite Chain.</p>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Agent Awaiting Authorization</h3>
+                <p className="text-slate-600 dark:text-slate-400 max-w-sm">Deploy your smart wallet to activate the AI agent capabilities on the Kite Chain.</p>
               </div>
             )}
           </section>

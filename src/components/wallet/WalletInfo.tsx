@@ -415,16 +415,16 @@ export default function WalletInfo({ signerAddress, privateKey, onDeploymentStat
     <div id="wallet-info" className="card p-6 transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,229,255,0.15)]">
       <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
         <div>
-          <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-pp-cyan">Wallet</h2>
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-white dark:to-pp-cyan">Wallet</h2>
         </div>
         <div className="flex items-center gap-2">
-          <span className={`pill text-xs ${walletData.wallet.isDeployed ? 'bg-pp-cyan/20 text-pp-cyan border-pp-cyan/50' : 'bg-white/10 text-slate-300 border-white/20'}`}>
+          <span className={`pill text-xs ${walletData.wallet.isDeployed ? 'bg-blue-100 text-blue-800 border-blue-200 dark:bg-pp-cyan/20 dark:text-pp-cyan dark:border-pp-cyan/50' : 'bg-slate-100 text-slate-600 border-slate-200 dark:bg-white/10 dark:text-slate-300 dark:border-white/20'}`}>
             {deploymentLabel}
           </span>
           <button
             onClick={() => fetchWalletInfo(true)}
             disabled={refreshing}
-            className="btn-tertiary text-xs px-2.5 py-1 bg-white/5 border-white/10 text-white hover:bg-white/10"
+            className="btn-tertiary text-xs px-2.5 py-1 bg-slate-100 border-slate-200 text-slate-700 hover:bg-slate-200 dark:bg-white/5 dark:border-white/10 dark:text-white dark:hover:bg-white/10"
             title="Refresh"
           >
             {refreshing ? '↻' : '⟳'}
@@ -432,7 +432,7 @@ export default function WalletInfo({ signerAddress, privateKey, onDeploymentStat
           <button
             type="button"
             onClick={() => setShowDetails((prev) => !prev)}
-            className="btn-tertiary text-xs px-2.5 py-1 bg-white/5 border-white/10 text-white hover:bg-white/10"
+            className="btn-tertiary text-xs px-2.5 py-1 bg-slate-100 border-slate-200 text-slate-700 hover:bg-slate-200 dark:bg-white/5 dark:border-white/10 dark:text-white dark:hover:bg-white/10"
             title="Wallet settings"
           >
             <span aria-hidden>⚙</span>
@@ -441,16 +441,16 @@ export default function WalletInfo({ signerAddress, privateKey, onDeploymentStat
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <div className="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-lg backdrop-blur-sm min-h-[100px] flex flex-col justify-center transition-transform hover:scale-[1.02]">
-          <div className="text-xs uppercase tracking-[0.1em] text-pp-cyan/80 font-bold mb-1">KITE</div>
+        <div className="rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 p-5 shadow-lg backdrop-blur-sm min-h-[100px] flex flex-col justify-center transition-transform hover:scale-[1.02]">
+          <div className="text-xs uppercase tracking-[0.1em] text-blue-600 dark:text-pp-cyan/80 font-bold mb-1">KITE</div>
           <div className="metric text-4xl">{Number.isFinite(aaBalance) ? aaBalance.toFixed(6) : '0.000000'}</div>
         </div>
         {importedTokens.map((token) => (
           <div
             key={token.address}
-            className="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-lg backdrop-blur-sm min-h-[100px] flex flex-col justify-center transition-transform hover:scale-[1.02]"
+            className="rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 p-5 shadow-lg backdrop-blur-sm min-h-[100px] flex flex-col justify-center transition-transform hover:scale-[1.02]"
           >
-            <div className="text-xs uppercase tracking-[0.1em] text-pp-purple/80 font-bold mb-1">{token.name}</div>
+            <div className="text-xs uppercase tracking-[0.1em] text-purple-600 dark:text-pp-purple/80 font-bold mb-1">{token.name}</div>
             <div className="metric text-4xl">{Number.isFinite(Number(token.balance)) ? Number(token.balance).toFixed(6) : token.balance}</div>
           </div>
         ))}
@@ -458,13 +458,13 @@ export default function WalletInfo({ signerAddress, privateKey, onDeploymentStat
 
       <div className="space-y-4 mt-6">
         {showDetails && (
-          <div className="rounded-2xl border border-pp-cyan/20 bg-pp-cyan/5 p-5 animate-float-in">
+          <div className="rounded-2xl border border-blue-200 bg-blue-50 dark:border-pp-cyan/20 dark:bg-pp-cyan/5 p-5 animate-float-in">
             <div className="flex items-center justify-between mb-4">
-              <div className="text-xs uppercase tracking-[0.16em] text-pp-cyan font-semibold">Wallet Settings</div>
+              <div className="text-xs uppercase tracking-[0.16em] text-blue-700 dark:text-pp-cyan font-semibold">Wallet Settings</div>
               <button
                 type="button"
                 onClick={() => setShowDetails(false)}
-                className="btn-tertiary text-xs px-2.5 py-1 bg-black/20 text-white border-transparent hover:bg-black/30"
+                className="btn-tertiary text-xs px-2.5 py-1 bg-slate-200 text-slate-700 border-transparent hover:bg-slate-300 dark:bg-black/20 dark:text-white dark:hover:bg-black/30"
               >
                 Hide
               </button>
@@ -491,14 +491,14 @@ export default function WalletInfo({ signerAddress, privateKey, onDeploymentStat
                   copyValue={token.address}
                 />
               ))}
-              <div className="mt-4 rounded-xl border border-white/10 bg-black/20 p-4">
+              <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 dark:border-white/10 dark:bg-black/20 p-4">
                 <button
                   type="button"
                   onClick={() => setShowAddToken((prev) => !prev)}
-                  className="flex items-center gap-2 text-xs uppercase tracking-[0.08em] text-white/90 font-semibold hover:text-pp-cyan transition-colors"
+                  className="flex items-center gap-2 text-xs uppercase tracking-[0.08em] text-slate-700 dark:text-white/90 font-semibold hover:text-blue-600 dark:hover:text-pp-cyan transition-colors"
                   aria-expanded={showAddToken}
                 >
-                  <span className="text-pp-cyan text-lg leading-none">+</span>
+                  <span className="text-blue-600 dark:text-pp-cyan text-lg leading-none">+</span>
                   ADD TOKEN ADDRESS
                 </button>
                 {showAddToken && (
@@ -509,20 +509,20 @@ export default function WalletInfo({ signerAddress, privateKey, onDeploymentStat
                         value={tokenAddressInput}
                         onChange={(e) => setTokenAddressInput(e.target.value)}
                         placeholder="0x..."
-                        className="flex-1 min-w-[200px] px-3 py-2 bg-black/30 border border-white/10 rounded-lg text-white font-mono text-xs focus:border-pp-cyan/50 focus:outline-none focus:ring-1 focus:ring-pp-cyan/50"
+                        className="flex-1 min-w-[200px] px-3 py-2 bg-white border border-slate-300 rounded-lg text-slate-900 dark:bg-black/30 dark:border-white/10 dark:text-white font-mono text-xs focus:border-blue-500 dark:focus:border-pp-cyan/50 focus:outline-none focus:ring-1 focus:ring-blue-500/20 dark:focus:ring-pp-cyan/50"
                       />
                       <input
                         type="text"
                         value={tokenNameInput}
                         onChange={(e) => setTokenNameInput(e.target.value)}
                         placeholder="Token name"
-                        className="w-32 px-3 py-2 bg-black/30 border border-white/10 rounded-lg text-white text-xs focus:border-pp-cyan/50 focus:outline-none"
+                        className="w-32 px-3 py-2 bg-white border border-slate-300 rounded-lg text-slate-900 dark:bg-black/30 dark:border-white/10 dark:text-white text-xs focus:border-blue-500 dark:focus:border-pp-cyan/50 focus:outline-none"
                       />
                       <button
                         type="button"
                         onClick={handleAddToken}
                         disabled={importingToken}
-                        className="px-3 py-2 bg-pp-cyan/20 border border-pp-cyan/30 rounded-lg text-pp-cyan hover:bg-pp-cyan/30 transition-colors"
+                        className="px-3 py-2 bg-blue-100 border border-blue-300 rounded-lg text-blue-700 hover:bg-blue-200 dark:bg-pp-cyan/20 dark:border-pp-cyan/30 dark:text-pp-cyan dark:hover:bg-pp-cyan/30 transition-colors"
                         title="Add token"
                       >
                         {importingToken ? '...' : '+'}
@@ -539,8 +539,8 @@ export default function WalletInfo({ signerAddress, privateKey, onDeploymentStat
         )}
 
         {walletData.wallet.isDeployed && parseFloat(walletData.balance) < 0.001 && (
-          <div className="mt-4 p-4 bg-blue-500/10 border border-blue-400/30 rounded-2xl backdrop-blur-md">
-            <p className="text-sm text-blue-200 mb-3 font-medium">
+          <div className="mt-4 p-4 bg-blue-50 border border-blue-300 rounded-2xl backdrop-blur-md dark:bg-blue-500/10 dark:border-blue-400/30">
+            <p className="text-sm text-blue-900 dark:text-blue-200 mb-3 font-medium">
               Your AA wallet balance is low. Fund it to start transactions.
             </p>
             <div className="flex gap-3">
@@ -565,29 +565,29 @@ export default function WalletInfo({ signerAddress, privateKey, onDeploymentStat
         )}
 
         {!walletData.wallet.isDeployed && (
-          <div className="mt-4 p-5 bg-amber-500/10 border border-amber-500/30 rounded-2xl backdrop-blur-md">
-            <p className="text-sm text-amber-200 mb-4 font-medium">
+          <div className="mt-4 p-5 bg-amber-50 border border-amber-300 rounded-2xl backdrop-blur-md dark:bg-amber-500/10 dark:border-amber-500/30">
+            <p className="text-sm text-amber-900 dark:text-amber-200 mb-4 font-medium">
               Your AA wallet needs to be deployed before you can use it.
             </p>
             <button
               onClick={handleDeploy}
               disabled={deploying || (!privateKey && (isWalletClientLoading || !isConnected))}
-              className="w-full btn bg-amber-500 text-white shadow-lg hover:bg-amber-400 border-none font-bold"
+              className="w-full btn bg-amber-500 text-white shadow-lg hover:bg-amber-600 dark:hover:bg-amber-400 border-none font-bold"
             >
               {deploying ? 'Deploying...' : (!privateKey && isWalletClientLoading) ? 'Loading...' : 'Deploy Smart Wallet'}
             </button>
           </div>
         )}
 
-        <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 shadow-lg overflow-hidden">
+        <div className="mt-4 rounded-2xl border border-slate-200 bg-white dark:border-white/10 dark:bg-white/5 shadow-lg overflow-hidden">
           <button
             type="button"
             onClick={() => setShowRecentActivity((prev) => !prev)}
-            className="flex w-full items-center justify-between p-4 hover:bg-white/5 transition-colors"
+            className="flex w-full items-center justify-between p-4 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors"
             aria-expanded={showRecentActivity}
           >
-            <span className="text-sm font-bold text-white tracking-wide">Recent Activities</span>
-            <span className="text-white/60 text-sm">{showRecentActivity ? '▾' : '▸'}</span>
+            <span className="text-sm font-bold text-slate-900 dark:text-white tracking-wide">Recent Activities</span>
+            <span className="text-slate-500 dark:text-white/60 text-sm">{showRecentActivity ? '▾' : '▸'}</span>
           </button>
           {showRecentActivity && (
             <div className="p-4 pt-0 border-t border-white/5">
