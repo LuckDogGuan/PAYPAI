@@ -442,16 +442,16 @@ export default function WalletInfo({ signerAddress, privateKey, onDeploymentStat
 
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 p-5 shadow-lg backdrop-blur-sm min-h-[100px] flex flex-col justify-center transition-transform hover:scale-[1.02]">
-          <div className="text-xs uppercase tracking-[0.1em] text-blue-600 dark:text-pp-cyan/80 font-bold mb-1">KITE</div>
-          <div className="metric text-4xl">{Number.isFinite(aaBalance) ? aaBalance.toFixed(6) : '0.000000'}</div>
+          <div className="text-sm uppercase tracking-[0.1em] text-blue-600 dark:text-pp-cyan/80 font-bold mb-1">KITE</div>
+          <div className="metric text-4xl">{Number.isFinite(aaBalance) ? aaBalance.toFixed(2) : '0.00'}</div>
         </div>
         {importedTokens.map((token) => (
           <div
             key={token.address}
             className="rounded-2xl border border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 p-5 shadow-lg backdrop-blur-sm min-h-[100px] flex flex-col justify-center transition-transform hover:scale-[1.02]"
           >
-            <div className="text-xs uppercase tracking-[0.1em] text-purple-600 dark:text-pp-purple/80 font-bold mb-1">{token.name}</div>
-            <div className="metric text-4xl">{Number.isFinite(Number(token.balance)) ? Number(token.balance).toFixed(6) : token.balance}</div>
+            <div className="text-sm uppercase tracking-[0.1em] text-purple-600 dark:text-pp-purple/80 font-bold mb-1">{token.name}</div>
+            <div className="metric text-4xl">{Number.isFinite(Number(token.balance)) ? Number(token.balance).toFixed(2) : token.balance}</div>
           </div>
         ))}
       </div>

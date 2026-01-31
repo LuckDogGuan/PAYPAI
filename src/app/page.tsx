@@ -116,18 +116,18 @@ export default function Home() {
                 <span className="text-5xl drop-shadow-md filter">💎</span>
               </div>
               <h1 className="text-6xl font-bold tracking-tighter mb-2">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-pp-cyan drop-shadow-sm">Pay</span>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-pp-cyan to-pp-purple drop-shadow-sm">Pai</span>
+                <span className="text-slate-900 dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-white dark:via-white dark:to-pp-cyan drop-shadow-sm">Pay</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-pp-cyan dark:to-pp-purple drop-shadow-sm">Pai</span>
               </h1>
-              <p className="text-lg text-slate-400 font-light tracking-wide">
-                AI Agent Wallet for <span className="text-pp-cyan font-medium">Kite Chain</span>
+              <p className="text-lg text-slate-600 dark:text-slate-400 font-light tracking-wide">
+                AI Agent Wallet for <span className="text-blue-600 dark:text-pp-cyan font-medium">Kite Chain</span>
               </p>
             </header>
 
             <WalletConnect onPrivateKeyConnect={handlePrivateKeyConnect} />
 
             <div className="mt-8 text-center">
-              <p className="text-[10px] text-slate-600 uppercase tracking-widest font-bold">
+              <p className="text-[10px] text-slate-500 dark:text-slate-600 uppercase tracking-widest font-bold">
                 Powered by Kite AI • Secured by ERC-4337
               </p>
             </div>
