@@ -463,8 +463,8 @@ export default function VaultInfo({
         </div>
       )}
       {showRuleEditor && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/30 backdrop-blur-sm px-4">
-          <div className="w-full max-w-2xl card-soft p-6">
+        <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/30 backdrop-blur-sm px-4 py-10">
+          <div className="mx-auto w-full max-w-xl card-soft p-6">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold text-slate-900">Change Spending Rules</h3>
               <button

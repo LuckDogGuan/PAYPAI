@@ -60,6 +60,8 @@ export default function AICommand({
   const [tokenDecimals, setTokenDecimals] = useState('18');
   const [awaitingConfirmation, setAwaitingConfirmation] = useState(false);
   const [lastConfirmed, setLastConfirmed] = useState<{ recipient: string; amount: string; token?: string } | null>(null);
+  const [namedRecipients, setNamedRecipients] = useState<Record<string, string>>({});
+  const [pendingRecipientName, setPendingRecipientName] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   const { isConnected } = useAccount();
@@ -140,6 +142,21 @@ export default function AICommand({
     } catch {
       // ignore copy errors
     }
+  };
+
+  const extractAddress = (text: string) => text.match(/0x[a-fA-F0-9]{40}/)?.[0];
+
+  const extractName = (text: string) => {
+    const match = text.match(/\b(?:to|for)\s+([a-zA-Z][a-zA-Z0-9_-]{1,20})\b/i);
+    return match?.[1];
+  };
+
+  const extractNameFromReply = (text: string) => {
+    const match =
+      text.match(/\b([A-Z][a-z]+)'s wallet address\b/) ||
+      text.match(/\b([A-Z][a-z]+) wallet address\b/) ||
+      text.match(/\bfor ([A-Z][a-z]+)\b/);
+    return match?.[1];
   };
 
   const isRepeatIntent = (text: string) =>
@@ -258,6 +275,23 @@ export default function AICommand({
       return;
     }
 
+    const messageAddress = extractAddress(trimmed);
+    const nameMention = extractName(trimmed);
+
+    if (messageAddress && nameMention) {
+      setNamedRecipients((prev) => ({ ...prev, [nameMention.toLowerCase()]: messageAddress }));
+      setPendingRecipientName(null);
+    }
+
+    let processed = trimmed;
+    if (!messageAddress && nameMention && namedRecipients[nameMention.toLowerCase()]) {
+      processed = `${trimmed} (${namedRecipients[nameMention.toLowerCase()]})`;
+    } else if (messageAddress && pendingRecipientName && !nameMention) {
+      setNamedRecipients((prev) => ({ ...prev, [pendingRecipientName.toLowerCase()]: messageAddress }));
+      processed = `${pendingRecipientName} ${messageAddress}`;
+      setPendingRecipientName(null);
+    }
+
     const nextMessages = [...assistantMessages, { role: 'user' as const, content: trimmed }];
     setMessages(nextMessages);
     setInput('');
@@ -269,6 +303,9 @@ export default function AICommand({
 
     try {
       const payloadMessages = toPlainMessages(nextMessages).slice(-8);
+      if (payloadMessages.length && processed !== trimmed) {
+        payloadMessages[payloadMessages.length - 1].content = processed;
+      }
       const mode = isActionIntent(trimmed) ? 'auto' : 'chat';
       const response = await fetch('/api/ai/parse', {
         method: 'POST',
@@ -299,13 +336,17 @@ export default function AICommand({
         });
         setMessages((prev) => [...prev, buildConfirmationMessage(result.parsed)]);
         setAwaitingConfirmation(true);
+        setPendingRecipientName(null);
       } else if (result.status === 'chat') {
         const reply = result.reply || 'How can I help you?';
         setMessages((prev) => [...prev, { role: 'assistant', content: reply }]);
         setAwaitingConfirmation(false);
+        setPendingRecipientName(null);
       } else {
         const reply = result.reply || 'Tell me more.';
         setMessages((prev) => [...prev, { role: 'assistant', content: reply }]);
+        const candidateName = extractNameFromReply(reply);
+        setPendingRecipientName(candidateName ? candidateName : null);
       }
     } catch (err) {
       const errorMsg = err instanceof Error ? err.message : 'Failed to parse command';

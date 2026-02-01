@@ -93,12 +93,19 @@ export default function Home() {
   // Show loading during SSR
   if (!mounted) {
     return (
-      <main className="min-h-screen bg-gradient-to-b from-[#F1F9FB] to-white">
+      <main className="relative z-[1] min-h-screen bg-gradient-to-b from-[#EEF7FF] to-[#F7F0FF] glass-theme">
         <div className="max-w-3xl mx-auto px-6 py-16">
           <header className="text-center">
             <div className="flex flex-col items-center gap-4">
               <div className="h-32 w-32 flex items-center justify-center">
-                <Image src={paypaiLogo} alt="PayPai logo" className="h-28 w-28 object-contain" />
+                <Image
+                  src={paypaiLogo}
+                  alt="PayPai logo"
+                  width={112}
+                  height={112}
+                  priority
+                  className="h-28 w-28 object-contain"
+                />
               </div>
               <h1 className="paypai-logo text-5xl tracking-tight">
                 PayPai
@@ -114,12 +121,19 @@ export default function Home() {
   // Show connect screen if no wallet is connected
   if (!signerAddress) {
     return (
-      <main className="min-h-screen bg-gradient-to-b from-[#F1F9FB] to-white">
+      <main className="relative z-[1] min-h-screen bg-gradient-to-b from-[#EEF7FF] to-[#F7F0FF] glass-theme">
         <div className="max-w-3xl mx-auto px-6 py-16">
           <header className="text-center">
             <div className="flex flex-col items-center gap-4">
               <div className="h-32 w-32 flex items-center justify-center">
-                <Image src={paypaiLogo} alt="PayPai logo" className="h-28 w-28 object-contain" />
+                <Image
+                  src={paypaiLogo}
+                  alt="PayPai logo"
+                  width={112}
+                  height={112}
+                  priority
+                  className="h-28 w-28 object-contain"
+                />
               </div>
               <h1 className="paypai-logo text-5xl tracking-tight">
                 PayPai
@@ -139,11 +153,11 @@ export default function Home() {
   }
 
   return (
-    <main className="relative min-h-screen bg-gradient-to-b from-[#F1F9FB] to-white text-slate-900">
+    <main className="relative z-[1] min-h-screen bg-gradient-to-b from-[#EEF7FF] to-[#F7F0FF] glass-theme">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -top-32 right-0 h-96 w-96 rounded-full bg-[radial-gradient(circle_at_top,_rgba(92,213,221,0.24),_transparent_70%)]"></div>
-        <div className="absolute -bottom-40 -left-20 h-96 w-96 rounded-full bg-[radial-gradient(circle_at_top,_rgba(90,57,186,0.18),_transparent_70%)]"></div>
-        <div className="absolute inset-x-0 top-0 h-72 bg-gradient-to-b from-[#F1F9FB] via-white/70 to-transparent"></div>
+        <div className="absolute -top-32 right-0 h-96 w-96 rounded-full bg-[radial-gradient(circle_at_top,_rgba(0,231,255,0.22),_transparent_70%)]"></div>
+        <div className="absolute -bottom-40 -left-20 h-96 w-96 rounded-full bg-[radial-gradient(circle_at_top,_rgba(154,85,255,0.2),_transparent_70%)]"></div>
+        <div className="absolute inset-x-0 top-0 h-72 bg-gradient-to-b from-[#EEF7FF] via-white/50 to-transparent"></div>
       </div>
       <div className="relative max-w-7xl mx-auto px-6 py-8">
         <header ref={headerRef} className="mb-8 card-soft p-6">
@@ -151,13 +165,20 @@ export default function Home() {
             <div>
               <div className="flex items-center gap-4">
                 <div className="h-24 w-24 flex items-center justify-center">
-                  <Image src={paypaiLogo} alt="PayPai logo" className="h-20 w-20 object-contain" />
+                  <Image
+                    src={paypaiLogo}
+                    alt="PayPai logo"
+                    width={80}
+                    height={80}
+                    priority
+                    className="h-20 w-20 object-contain"
+                  />
                 </div>
                 <h1 className="paypai-logo text-4xl tracking-tight">
                   PayPai
                 </h1>
               </div>
-              <div className="mt-3 text-xs text-slate-500">
+              <div className="mt-3 text-sm font-semibold text-slate-900">
                 Secure AI wallet for Kite Chain.
               </div>
             </div>
@@ -322,7 +343,13 @@ export default function Home() {
                 className="h-10 w-auto"
                 title="SPARK AI Hackathon"
               >
-                <Image src={sparkHackathonLogo} alt="SPARK AI Hackathon" className="h-10 w-auto object-contain" />
+                <Image
+                  src={sparkHackathonLogo}
+                  alt="SPARK AI Hackathon"
+                  width={160}
+                  height={40}
+                  className="h-10 w-auto object-contain"
+                />
               </a>
               <a
                 href="https://gokite.ai/"
@@ -331,7 +358,13 @@ export default function Home() {
                 className="h-10 w-auto"
                 title="Kite AI"
               >
-                <Image src={kiteAiLogo} alt="Kite AI" className="h-10 w-auto object-contain" />
+                <Image
+                  src={kiteAiLogo}
+                  alt="Kite AI"
+                  width={120}
+                  height={40}
+                  className="h-10 w-auto object-contain"
+                />
               </a>
               <a
                 href="https://ethpanda.org/"
@@ -340,7 +373,13 @@ export default function Home() {
                 className="h-10 w-auto"
                 title="ETH Panda"
               >
-                <Image src={ethPandaLogo} alt="ETH Panda" className="h-10 w-auto object-contain" />
+                <Image
+                  src={ethPandaLogo}
+                  alt="ETH Panda"
+                  width={120}
+                  height={40}
+                  className="h-10 w-auto object-contain"
+                />
               </a>
               <a
                 href="https://lxdao.io/"
@@ -349,7 +388,13 @@ export default function Home() {
                 className="h-10 w-auto"
                 title="LX Dao"
               >
-                <Image src={lxDaoLogo} alt="LX Dao" className="h-10 w-auto object-contain" />
+                <Image
+                  src={lxDaoLogo}
+                  alt="LX Dao"
+                  width={120}
+                  height={40}
+                  className="h-10 w-auto object-contain"
+                />
               </a>
             </div>
           </div>
